@@ -1,0 +1,14 @@
+@import '../../../../../colors';
+
+.link{
+  text-decoration: underline;
+  color: $primary-color;
+}
+
+.bold{
+  font-weight: 500;
+}
+
+form{
+  width: 100%;
+}

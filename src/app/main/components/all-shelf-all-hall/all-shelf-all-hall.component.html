@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12 end-xs">
+    <button mat-flat-button class="round-button" (click)="onGetExcel()" color="primary">Descargar</button>
+  </div>
+</div>
+<div *ngIf="!range && data">
+  <app-chart-all-shelf-all-hall [data]="data"></app-chart-all-shelf-all-hall>
+</div>
+<div *ngIf="range && data">
+  <app-chart2-all-shelf-all-hall [data]="data"></app-chart2-all-shelf-all-hall>
+</div>
+<div *ngIf="data">
+  <app-card-all-shelf-all-hall *ngFor="let x of data"
+    [data]="x"></app-card-all-shelf-all-hall>
+</div>

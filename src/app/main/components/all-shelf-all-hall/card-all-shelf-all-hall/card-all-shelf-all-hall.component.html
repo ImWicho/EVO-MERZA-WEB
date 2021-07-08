@@ -1,0 +1,87 @@
+<div class="row mt-30">
+  <div class="col-xs-12">
+    <div class="card row">
+      <div class="col-xs-1 center-xs middle-xs">
+        <img src="assets/images/logo.svg" class="img-responsive img-card" alt="logo tienda">
+      </div>
+      <div class="col-xs-4 center-xs middle-xs">
+        <h3 class="text-card">{{ data.nombre_tienda }} - Pasillo {{ data.id_pasillotienda }}</h3>
+        <p class="sub-text-card">{{ data.fecha_inicio }} -- {{ data.fecha_final }}</p>
+      </div>
+      <div class="col-xs-1 center-xs middle-xs">
+        <h3 class="text-card">Correctas</h3>
+        <h3 class="text-card">{{ data.total_alertas_correctas ? data.total_alertas_correctas : 0 }}</h3>
+      </div>
+      <div class="col-xs-2 center-xs middle-xs">
+        <h3 class="text-card">Faltantes</h3>
+        <h3 class="text-card">{{ data.total_alertas_faltantes ? data.total_alertas_faltantes : 0 }}</h3>
+      </div>
+      <div class="col-xs-2 center-xs middle-xs">
+        <h3 class="text-card">Alertas totales</h3>
+        <h3 class="text-card">{{ data.total_alertas_faltantes ? data.total_alertas_faltantes : 0 }}</h3>
+      </div>
+      <div class="col-xs-2 row center-xs middle-xs">
+        <div>
+          <button mat-button (click)="onOpenDetails()">Ver detalles <mat-icon svgIcon="menu-down"></mat-icon></button>
+        </div>
+      </div>
+      <div class="col-xs-12" *ngIf="details">
+        <div class="row">
+          <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let element"></td>
+            </ng-container>
+            <ng-container matColumnDef="tag">
+              <th mat-header-cell *matHeaderCellDef> Producto </th>
+              <td mat-cell *matCellDef="let element"> {{ element.nombre_producto }} </td>
+            </ng-container>
+            <ng-container matColumnDef="ok">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="bg blue">
+                  {{ element.alertas_correctas }}
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="missing">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="bg red">
+                  {{ element.alertas_faltantes }}
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="totals">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{ element.alertas_faltantes }} </td>
+            </ng-container>
+            <ng-container matColumnDef="details">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"></td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="expandedDetail">
+              <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      <div class="col-xs-12 end-xs middle-xs">
+                        <p class="link"  *ngFor="let link of element.Snapshots" (click)="onOpenSnapshot(link.link)">Snapshot--{{ link.fecha_hora }}</p>
+                      </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+              [class.example-expanded-row]="expandedElement === element"
+              (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

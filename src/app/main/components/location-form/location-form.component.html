@@ -1,0 +1,67 @@
+<div class="row middle-xs">
+  <div class="col-xs-6">
+    <h2 mat-dialog-title>Filtros de Ubicación</h2>
+  </div>
+  <div class="col-xs-6 end-xs">
+    <button mat-icon-button color="primary" [mat-dialog-close]="false">
+      <mat-icon svgIcon="close"></mat-icon>
+    </button>
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-xs-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Tienda</mat-label>
+          <mat-select formControlName="id_tienda" cdkFocusInitial (selectionChange)="onGetAisles($event.value)">
+            <mat-option *ngFor="let store of stores" [value]="store.id_tienda">
+              {{ store.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row middle-xs">
+      <div class="col-xs-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Pasillo</mat-label>
+          <mat-select formControlName="id_pasillotienda" (selectionChange)="onGetShelfs($event.value)">
+            <mat-option *ngFor="let aisle of aisles" [value]="aisle.id_pasillo">
+              Pasillo {{ aisle.id_pasillotienda }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-6">
+        <mat-checkbox color="primary" formControlName="allaisles" (change)="onAllAisles($event.checked)">Todos los pasillos</mat-checkbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Anaquel</mat-label>
+          <mat-select formControlName="id_estante">
+            <mat-option *ngFor="let shelf of shelfs" [value]="shelf.id_estante">
+              Anaquel {{ shelf.id_estante }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-6">
+        <mat-checkbox color="primary" formControlName="allshelfs" (change)="onAllShelfs($event.checked)">Todos los anaqueles</mat-checkbox>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button
+  color="primary"
+  class="boder-button round-button"
+  (click)="onResetForms()">Limpiar</button>
+  <button mat-flat-button
+  class="boder-button round-button"
+  color="primary"
+  (click)="onSendDataForms()"
+  [disabled]="form.invalid">Consultar</button>
+</mat-dialog-actions>

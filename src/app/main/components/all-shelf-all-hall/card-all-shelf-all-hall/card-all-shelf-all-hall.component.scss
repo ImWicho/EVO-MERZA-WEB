@@ -1,0 +1,110 @@
+.card{
+  width: 100%;
+  background-color: #FAFAFA;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  padding: 15px;
+}
+
+.img-card{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+.text-card{
+  margin: 0;
+  font-weight: 500;
+}
+
+.bg{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.bg.blue{
+  background: linear-gradient(269deg,rgba(124, 202, 251, 0.65) 18%, #61C2FF 93%);
+}
+
+.bg.red{
+  background: linear-gradient(269deg,#FF9F10 18%, rgba(255, 173, 50, 0.64) 93%);
+
+}
+
+.d-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-text-card{
+  color: #6F6F6F;
+}
+
+// Table and expand row
+
+table {
+  width: 100%;
+  background-color: #fafafa;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+// With of each column
+.mat-column-details{
+  text-align: center;
+  width: 16.66666667%;
+}
+
+.mat-column-totals{
+  text-align: center;
+  width: 16.66666667%;
+}
+
+.mat-column-missing{
+  text-align: center;
+  width: 16.66666667%;
+}
+
+.mat-column-ok{
+  text-align: center;
+  width: 8.33333333%;
+}
+.mat-column-tag{
+  text-align: center;
+  width: 20.83333333%;
+}
+
+.mat-column-name{
+  text-align: center;
+  width: 20.83333333%;
+}

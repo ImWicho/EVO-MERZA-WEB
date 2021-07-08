@@ -1,0 +1,35 @@
+<mat-toolbar>
+  <div class="toolbar row between-xs">
+    <div class="wrap-image">
+      <img src="assets/images/logo.svg" alt="" srcset="">
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu1">Tiendas <mat-icon svgIcon="menu-down"></mat-icon></button>
+      <mat-menu #menu1="matMenu">
+       <button mat-menu-item (click)="onNavigate(1);">
+         <mat-icon svgIcon="planograma"></mat-icon>
+         <span>Reglas de planograma</span>
+       </button>
+       <button mat-menu-item (click)="onNavigate(2);">
+         <mat-icon svgIcon="alertas"></mat-icon>
+         <span>Alertas de planograma</span>
+       </button>
+     </mat-menu>
+      <button mat-button>CEDIS <mat-icon svgIcon="menu-down"></mat-icon></button>
+    </div>
+    <div>
+     <button mat-icon-button>
+       <mat-icon class="color-icon" svgIcon="cog-outline"></mat-icon>
+     </button>
+     <button mat-icon-button>
+       <mat-icon class="color-icon" svgIcon="bell-outline"></mat-icon>
+     </button>
+     <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon class="color-icon" svgIcon="menu-down"></mat-icon> Usuario Merza <mat-icon svgIcon="account-circle"></mat-icon>
+     </button>
+     <mat-menu #menu="matMenu">
+       <button mat-menu-item (click)="onLogOut()"><mat-icon svgIcon="exit-to-app"></mat-icon>Cerrar sesión</button>
+     </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

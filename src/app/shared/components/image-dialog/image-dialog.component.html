@@ -1,0 +1,13 @@
+<div class="row center-xs">
+  <div class="col-xs-12" *ngIf="!loading">
+    <div class="wrap-image">
+      <img [src]="image" alt="snapshot" class="img-responsive">
+    </div>
+  </div>
+  <div class="col-xs-12" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

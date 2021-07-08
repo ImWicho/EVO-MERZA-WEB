@@ -1,0 +1,87 @@
+<app-header 
+  title="Alertas de planograma"
+  desc="Visualice las alertas de planograma acumuladas en lo que va del día"
+></app-header>
+<div class="container">
+  <div class="p-10 mt-5">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Alertas de planograma en anaquel</h2>
+      </div>
+    </div>
+    <div class="row mt-10">
+      <div class="col-xs-12">
+        <form [formGroup]="form" (ngSubmit)="onApplyFilters()">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="bold">Ubicación</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Tienda</mat-label>
+                <mat-select formControlName="id_tienda" cdkFocusInitial (selectionChange)="onGetAisles($event.value)">
+                  <mat-option *ngFor="let store of stores" [value]="store.id_tienda">
+                    {{ store.nombre }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Pasillo</mat-label>
+                <mat-select formControlName="id_pasillotienda" (selectionChange)="onGetShelfs($event.value)">
+                  <mat-option *ngFor="let aisle of aisles" [value]="aisle.id_pasillotienda">
+                    Pasillo {{ aisle.id_pasillotienda }} -- {{ aisle.descripcion }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+               <mat-checkbox color="primary" formControlName="allaisles" (change)="onAllAisles($event.checked)">Todos los pasillos</mat-checkbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Anaquel</mat-label>
+                <mat-select formControlName="id_estante">
+                  <mat-option *ngFor="let shelf of shelfs" [value]="shelf.id_estante">
+                    Anaquel {{ shelf.id_estante }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-checkbox color="primary" formControlName="allshelfs" (change)="onAllShelfs($event.checked)">Todos los anaqueles</mat-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 end-lg end-md center-xs center-md">
+              <button mat-button class="round-button boder-button" [disabled]="loading" color="primary">Aplicar filtros</button>
+            </div>
+          </div>
+          <div class="row mt-10" *ngIf="showInfo">
+            <div class="col-xs-12 end-xs">
+              <p class="link" (click)="onOpenCamera()">Ver cámara</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="showInfo">
+      <div class="row mt-10">
+        <div class="col-xs-12">
+          <h2>Alertas acumuladas durante el día</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>Se mostrarán el total de alertas emitidas hasta el último snapshot tomado anterior a la consulta, así como la snapshot del momento en el que se disparó la alerta de un faltante.</p>
+        </div>
+      </div>
+      <app-one-shelf-one-hall [range]="false" [data]="data" *ngIf="!allaisles && !allshelfs"></app-one-shelf-one-hall>
+      <app-all-shelf-one-hall [range]="false" [data]="data" *ngIf="!allaisles && allshelfs"></app-all-shelf-one-hall>
+      <app-all-shelf-all-hall [range]="false" [data]="data" *ngIf="allaisles && allshelfs"></app-all-shelf-all-hall>
+    </div>
+
+    <div class="row center-xs" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

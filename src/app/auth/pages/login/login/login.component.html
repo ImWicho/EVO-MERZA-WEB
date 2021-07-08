@@ -1,0 +1,40 @@
+<div class="login-container">
+  <div class="login-image-container">
+    <div class="login-image-background"></div>
+  </div>
+  <div class="login-form-background">
+    <div class="login-form-container">
+      <img class="login-logo" src="assets/images/logo.svg" />
+      <h1 class="login-welcome-text">
+        ¡Bienvenido!
+      </h1>
+      <form [formGroup]="form" (ngSubmit)="onLogin()" class="login-form" autocomplete="off">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Correo
+          </mat-label>
+          <input matInput maxlength="65" formControlName="username" type="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Contraseña
+          </mat-label>
+          <input matInput maxlength="45" formControlName="password" type="password">
+        </mat-form-field>
+        <div class="row">
+          <div class="col-xs-12 center-xs">
+            <button mat-raised-button [disabled]="form.invalid" color="primary" class="round-button">
+              Iniciar Sesión
+            </button>
+          </div>
+          <div class="col-xs-12 center-xs mt-30">
+            <a class="login-forgot-password">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <app-footer-component></app-footer-component> -->
